@@ -44,6 +44,18 @@ router.put('/:id', async (req, res) => {
     }
 });
 
+router.put('/', async (req, res)=>{
+    try{
+        const updatedPosts = await Post.updateMany({username: req.query.user}, {
+            $set: {username: req.body.user}
+        });
+
+        res.send(updatedPosts);
+    }catch(err){
+
+    }
+})
+
 // DELETE
 router.delete('/:id', async (req, res) => {
     try {
